@@ -1,0 +1,22 @@
+<div align="center">
+{% extends "model-page.html" %}
+
+{% block content %}
+    <h2>Agendamentos</h2>
+    <a href="criadorevento/">
+        <button type="button">Novo Evento</button>
+    </a>
+    <ul style="font-size: 18px">
+        {% for evento in eventos %}
+            <li>
+                <div style={% if evento.get_evento_atrasado %}
+                                "color:red"
+                                {% endif %}>
+                    {{ evento.titulo }} - {{ evento.get_data_evento }} (<a href="criadorevento/?id={{ evento.id }}">Editar</a>
+                    /<a href="criadorevento/delete/{{ evento.id }}/">Excluir</a>)
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+</div>
